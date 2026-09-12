@@ -154,7 +154,16 @@
   }
   .hero-meta div{color:#AFC6D6;font-size:14px;}
   .hero-meta strong{display:block;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;}
-  .hero-art{position:relative;}
+  .hero-art{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/3.1;box-shadow:0 24px 60px rgba(0,0,0,0.35);}
+  .hero-art img{width:100%;height:100%;object-fit:cover;}
+  .hero-art::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(12,30,46,0) 55%, rgba(12,30,46,0.55) 100%);
+  }
+  .hero-art .credit{
+    position:absolute;right:8px;bottom:6px;z-index:2;
+    font-size:10.5px;color:rgba(255,255,255,0.7);letter-spacing:0.2px;
+  }
 
   /* ---------- SECTION SCAFFOLD ---------- */
   section{padding:88px 0;}
@@ -183,13 +192,14 @@
   }
   .cat-card:hover{box-shadow:0 14px 30px rgba(19,42,62,0.12);transform:translateY(-3px);}
   .cat-thumb{
-    aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
-    position:relative;overflow:hidden;
+    aspect-ratio:4/3;display:block;
+    position:relative;overflow:hidden;background:var(--paper);
   }
-  .cat-thumb svg{width:78%;height:78%;}
+  .cat-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
   .cat-thumb::after{
     content:"";position:absolute;inset:0;
-    background:radial-gradient(120% 120% at 15% 0%, rgba(255,255,255,0.10), transparent 55%);
+    background:linear-gradient(180deg, rgba(12,30,46,0) 60%, rgba(12,30,46,0.28) 100%);
+    pointer-events:none;
   }
   .cat-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:12px;flex:1;}
   .cat-body h3{font-size:20px;}
@@ -228,10 +238,10 @@
     display:flex;flex-direction:column;
   }
   .product-thumb{
-    aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;
-    border-bottom:1px solid var(--line);position:relative;overflow:hidden;
+    aspect-ratio:1/1;display:block;
+    border-bottom:1px solid var(--line);position:relative;overflow:hidden;background:var(--paper);
   }
-  .product-thumb svg{width:70%;height:70%;}
+  .product-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
   .product-info{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
   .product-label{font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--copper);font-weight:600;}
   .product-info h4{font-size:17px;font-weight:600;font-family:'Inter',sans-serif;color:var(--ink);}
@@ -309,6 +319,7 @@
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
     font-size:12.5px;color:#7E93A3;
   }
+  .footer-photo-credit{font-size:11.5px;color:#7E93A3;margin-top:8px;max-width:60ch;}
 
   /* ---------- WHATSAPP FLOAT ---------- */
   .wa-float{
@@ -328,7 +339,7 @@
     .nav-links, .nav-cta .btn-outline{display:none;}
     .hamburger{display:flex;}
     .hero-grid{grid-template-columns:1fr;}
-    .hero-art{order:-1;max-width:340px;margin:0 auto;}
+    .hero-art{order:-1;max-width:420px;margin:0 auto;}
     .value-grid{grid-template-columns:repeat(2,1fr);}
     .cat-grid{grid-template-columns:repeat(2,1fr);}
     .product-grid{grid-template-columns:repeat(2,1fr);}
@@ -415,26 +426,8 @@
         </div>
       </div>
       <div class="hero-art">
-        <svg viewBox="0 0 380 340" width="100%">
-          <rect x="0" y="0" width="380" height="340" fill="none"/>
-          <g stroke="#2C5876" stroke-width="10" fill="none" stroke-linecap="round">
-            <path d="M40 60 H180 V150 H320"/>
-            <path d="M40 250 H140 V150"/>
-            <path d="M240 60 V150"/>
-          </g>
-          <g fill="#B5652D">
-            <circle cx="40" cy="60" r="12"/>
-            <circle cx="180" cy="150" r="12"/>
-            <circle cx="320" cy="150" r="12"/>
-            <circle cx="40" cy="250" r="12"/>
-            <circle cx="140" cy="150" r="12"/>
-            <circle cx="240" cy="60" r="12"/>
-          </g>
-          <g stroke="#5E86A0" stroke-width="6" fill="none" opacity="0.5">
-            <circle cx="320" cy="150" r="26"/>
-            <circle cx="40" cy="250" r="26"/>
-          </g>
-        </svg>
+        <img src="https://images.pexels.com/photos/4483773/pexels-photo-4483773.jpeg?auto=compress&cs=tinysrgb&w=900&h=700&fit=crop" alt="Warehouse shelving stocked with plumbing and building supplies" loading="eager">
+        <span class="credit">Photo: Tiger Lily / Pexels</span>
       </div>
     </div>
   </div>
@@ -520,7 +513,7 @@
     <div class="section-head" style="margin-top:64px;">
       <span class="kicker">Sample listings</span>
       <h2 style="font-size:26px;">Example Product Cards</h2>
-      <p>Labelled as sample content — real products, images and specifications will replace these.</p>
+      <p>Labelled as sample content — real products, images and specifications will replace these. Photos shown are representative stock photography, not confirmed photographs of current inventory.</p>
     </div>
     <div class="product-grid" id="sampleProductGrid"></div>
   </div>
@@ -663,6 +656,7 @@
           <span class="brand-name">Goshen JCE Resources</span>
         </div>
         <p>Wholesale &amp; Retail Plumbing Materials — Port Harcourt, Rivers State, Nigeria.</p>
+        <p class="footer-photo-credit">Category photography courtesy of photographers on Pexels, used under the Pexels License. Images are representative and not confirmed photographs of current stock — verify licensing before this site goes live.</p>
       </div>
       <div>
         <h5>Navigate</h5>
@@ -721,87 +715,45 @@ mobilePanel.querySelectorAll('a:not(.js-whatsapp)').forEach(a=>{
   a.addEventListener('click', ()=> mobilePanel.classList.remove('open'));
 });
 
-/* ---- Category illustrations (built as inline SVG artwork, not photos) ---- */
+/* ---- Category imagery: real stock photography (Pexels), not illustrations ----
+   Each entry credits the photographer per the Pexels License (attribution not
+   required by the license, but included here for transparency/provenance). */
+function pexelsUrl(id, w, h){
+  return `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}&h=${h}&fit=crop&dpr=1`;
+}
+
 const categories = [
-  { name:"Pipes", desc:"Piping for water supply and drainage applications.", bg:"#12293F",
-    art:`<g>
-      <rect x="14" y="34" width="72" height="16" rx="8" fill="#3E6C8C"/>
-      <rect x="14" y="34" width="72" height="5" rx="2.5" fill="#6B98B4"/>
-      <ellipse cx="14" cy="42" rx="7" ry="8" fill="#274A63"/>
-      <ellipse cx="14" cy="42" rx="4" ry="5" fill="#0C1E2E"/>
-      <rect x="30" y="56" width="46" height="12" rx="6" fill="#2C5876"/>
-      <rect x="30" y="56" width="46" height="4" rx="2" fill="#5E86A0"/>
-      <ellipse cx="30" cy="62" rx="5" ry="6" fill="#1E4058"/>
-      <circle cx="76" cy="26" r="5" fill="#B5652D"/>
-    </g>` },
-  { name:"Pipe Fittings", desc:"Elbows, tees, couplings and connectors.", bg:"#1B3A50",
-    art:`<g>
-      <path d="M28 70V46a14 14 0 0114-14h24" stroke="#5E86A0" stroke-width="14" fill="none" stroke-linecap="round"/>
-      <path d="M28 70V46a14 14 0 0114-14h24" stroke="#2C5876" stroke-width="14" fill="none" stroke-linecap="round" stroke-dasharray="1 1" opacity="0.001"/>
-      <circle cx="28" cy="70" r="10" fill="#B5652D"/>
-      <circle cx="66" cy="32" r="10" fill="#B5652D"/>
-      <rect x="22" y="63" width="12" height="4" fill="#0C1E2E" opacity="0.4"/>
-    </g>` },
-  { name:"Valves", desc:"Flow-control valves for plumbing systems.", bg:"#12293F",
-    art:`<g>
-      <rect x="44" y="52" width="12" height="26" rx="2" fill="#3E6C8C"/>
-      <rect x="30" y="66" width="40" height="14" rx="4" fill="#5E86A0"/>
-      <circle cx="50" cy="38" r="20" fill="#B5652D"/>
-      <circle cx="50" cy="38" r="20" fill="none" stroke="#8F4E22" stroke-width="3"/>
-      <rect x="47" y="16" width="6" height="16" rx="2" fill="#8F4E22"/>
-      <rect x="18" y="35" width="16" height="6" rx="2" fill="#8F4E22"/>
-      <rect x="66" y="35" width="16" height="6" rx="2" fill="#8F4E22"/>
-      <circle cx="50" cy="38" r="6" fill="#F5F3EE"/>
-    </g>` },
-  { name:"Taps & Faucets", desc:"Fixtures for kitchens, bathrooms and outdoor use.", bg:"#1B3A50",
-    art:`<g>
-      <rect x="30" y="60" width="10" height="24" rx="3" fill="#3E6C8C"/>
-      <path d="M35 60V40a16 16 0 0116-16h14" stroke="#5E86A0" stroke-width="10" fill="none" stroke-linecap="round"/>
-      <circle cx="65" cy="24" r="6" fill="#8F4E22"/>
-      <circle cx="35" cy="84" r="3" fill="#B5DEF5"/>
-      <circle cx="35" cy="92" r="2" fill="#8FCBE8" opacity="0.7"/>
-    </g>` },
-  { name:"Water Pumps", desc:"Pumping solutions for water supply systems.", bg:"#12293F",
-    art:`<g>
-      <rect x="24" y="34" width="42" height="34" rx="5" fill="#3E6C8C"/>
-      <circle cx="45" cy="51" r="12" fill="#274A63"/>
-      <circle cx="45" cy="51" r="5" fill="#B5DEF5"/>
-      <rect x="66" y="44" width="18" height="12" rx="4" fill="#B5652D"/>
-      <rect x="16" y="44" width="10" height="12" rx="3" fill="#5E86A0"/>
-      <rect x="30" y="68" width="10" height="10" fill="#1E4058"/>
-      <rect x="52" y="68" width="10" height="10" fill="#1E4058"/>
-    </g>` },
-  { name:"Sanitary Ware", desc:"Basins, WCs and bathroom fixtures.", bg:"#1B3A50",
-    art:`<g>
-      <path d="M18 46h64a4 4 0 014 4v2a22 22 0 01-22 22H36a22 22 0 01-22-22v-2a4 4 0 014-4z" fill="#5E86A0"/>
-      <ellipse cx="50" cy="46" rx="32" ry="7" fill="#7CA6BF"/>
-      <rect x="44" y="30" width="12" height="16" rx="4" fill="#3E6C8C"/>
-      <circle cx="50" cy="27" r="5" fill="#8F4E22"/>
-    </g>` },
-  { name:"Plumbing Accessories", desc:"Tapes, sealants, brackets and small hardware.", bg:"#12293F",
-    art:`<g>
-      <rect x="20" y="60" width="60" height="10" rx="5" fill="#B5652D" transform="rotate(-18 20 60)"/>
-      <circle cx="66" cy="30" r="16" fill="none" stroke="#5E86A0" stroke-width="7"/>
-      <circle cx="66" cy="30" r="7" fill="#274A63"/>
-      <rect x="28" y="24" width="8" height="24" rx="3" fill="#3E6C8C"/>
-      <rect x="24" y="20" width="16" height="8" rx="2" fill="#5E86A0"/>
-    </g>` },
-  { name:"Water & Storage Solutions", desc:"Tanks and storage accessories for water supply.", bg:"#1B3A50",
-    art:`<g>
-      <path d="M22 34a28 14 0 0156 0v24a28 14 0 01-56 0z" fill="#3E6C8C"/>
-      <ellipse cx="50" cy="34" rx="28" ry="14" fill="#5E86A0"/>
-      <ellipse cx="50" cy="34" rx="20" ry="9" fill="#7CA6BF" opacity="0.6"/>
-      <rect x="42" y="18" width="16" height="10" rx="2" fill="#B5652D"/>
-      <rect x="34" y="66" width="6" height="10" fill="#1E4058"/>
-      <rect x="60" y="66" width="6" height="10" fill="#1E4058"/>
-    </g>` },
+  { name:"Pipes", desc:"Piping for water supply and drainage applications.",
+    photoId:"29301874", credit:"Sergei Starostin",
+    alt:"Stack of grey PVC plumbing pipes at a supply yard" },
+  { name:"Pipe Fittings", desc:"Elbows, tees, couplings and connectors.",
+    photoId:"33863759", credit:"haberdoedas",
+    alt:"Close-up of a metal pipe fitting with cap and chain" },
+  { name:"Valves", desc:"Flow-control valves for plumbing systems.",
+    photoId:"12527113", credit:"quangludo",
+    alt:"Blue metal gate valve mounted on red plumbing pipes" },
+  { name:"Taps & Faucets", desc:"Fixtures for kitchens, bathrooms and outdoor use.",
+    photoId:"5869443", credit:"Christine Gretland",
+    alt:"Chrome dual faucet on a ceramic bathroom surface" },
+  { name:"Water Pumps", desc:"Pumping solutions for water supply systems.",
+    photoId:"10518630", credit:"Boris Gabrinji",
+    alt:"Metal water pump used for water supply" },
+  { name:"Sanitary Ware", desc:"Basins, WCs and bathroom fixtures.",
+    photoId:"3634742", credit:"Hakim Santoso",
+    alt:"White ceramic sink beside a white ceramic toilet bowl" },
+  { name:"Plumbing Accessories", desc:"Tapes, sealants, brackets and small hardware.",
+    photoId:"8488060", credit:"Kindel Media",
+    alt:"Close-up of a plumber's pipe wrench" },
+  { name:"Water & Storage Solutions", desc:"Tanks and storage accessories for water supply.",
+    photoId:"32418620", credit:"Marian Florinel Condruz",
+    alt:"Aerial view of large round water storage tanks" },
 ];
 
 function categoryCard(cat){
   return `
     <div class="cat-card">
-      <div class="cat-thumb" style="background:${cat.bg};">
-        <svg viewBox="0 0 100 100">${cat.art}</svg>
+      <div class="cat-thumb">
+        <img src="${pexelsUrl(cat.photoId, 480, 360)}" alt="${cat.alt}" loading="lazy" decoding="async">
       </div>
       <div class="cat-body">
         <h3>${cat.name}</h3>
@@ -814,17 +766,17 @@ function categoryCard(cat){
 document.getElementById('homeCategoryGrid').innerHTML = categories.slice(0,8).map(categoryCard).join('');
 document.getElementById('productCategoryGrid').innerHTML = categories.map(categoryCard).join('');
 
-/* ---- Sample product cards (each with a distinct illustration) ---- */
+/* ---- Sample product cards (reuse category photography as representative stock imagery) ---- */
 const sampleProducts = [
-  { label:"Sample Product", name:"PVC Pipe", bg:"#EFEAE0", art:categories[0].art },
-  { label:"Sample Product", name:"Pipe Fitting", bg:"#E4EDE9", art:categories[1].art },
-  { label:"Sample Product", name:"Ball Valve", bg:"#F1E7DC", art:categories[2].art },
-  { label:"Sample Product", name:"Water Pump", bg:"#E6ECEF", art:categories[4].art },
+  { label:"Sample Product", name:"PVC Pipe (Representative)", photoId:categories[0].photoId, alt:categories[0].alt },
+  { label:"Sample Product", name:"Pipe Fitting (Representative)", photoId:categories[1].photoId, alt:categories[1].alt },
+  { label:"Sample Product", name:"Gate Valve (Representative)", photoId:categories[2].photoId, alt:categories[2].alt },
+  { label:"Sample Product", name:"Water Pump (Representative)", photoId:categories[4].photoId, alt:categories[4].alt },
 ];
 document.getElementById('sampleProductGrid').innerHTML = sampleProducts.map(p=>`
   <div class="product-card">
-    <div class="product-thumb" style="background:${p.bg};">
-      <svg viewBox="0 0 100 100">${p.art}</svg>
+    <div class="product-thumb">
+      <img src="${pexelsUrl(p.photoId, 400, 400)}" alt="${p.alt}" loading="lazy" decoding="async">
     </div>
     <div class="product-info">
       <span class="product-label">${p.label}</span>
